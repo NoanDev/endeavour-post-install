@@ -1,12 +1,12 @@
 <p align="center">
-<img width="800px" src="https://raw.githubusercontent.com/eddiecsilva/debian-post-install/main/img/project_thumb.png" align="center" alt="white" /><br><br>
+<img width="800px" src="https://github.com/NoanDev/endeavour-post-install/blob/main/img/endos-img" align="center" alt="white" /><br><br>
  
 <!-- (site para ícones: https://shields.io/ ) -->
  
 <img alt="Maintained" src="https://img.shields.io/badge/Maintained%3F-Yes-green">
-<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/eddiecsilva/debian-post-install">
-<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/eddiecsilva/debian-post-install">
-<img alt="GitHub commit activity (branch)" src="https://img.shields.io/github/commit-activity/y/eddiecsilva/debian-post-install">
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/NoanDev/endeavour-post-install">
+<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/NoanDev/endeavour-post-install">
+<img alt="GitHub commit activity (branch)" src="https://img.shields.io/github/commit-activity/y/NoanDev/endeavour-post-install">
 
 </p>
 
