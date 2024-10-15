@@ -176,7 +176,7 @@ sudo chmod 777 /mnt/nomedapartição
 ```
 
 
-# Manutenções de uso (Fazer a cada 3 ou 6 meses)
+# Manutenções de uso (Fazer a cada 2 ou 4 meses)
 
 **Limpa arquivos de configuração antigos:**
 ```shellscript
@@ -188,7 +188,12 @@ https://wiki.archlinux.org/title/System_maintenance#Old_configuration_files
 paccache -r
 ```
 
-**Mantendo as Mirrors atualizadas (Cada 1 mês):**
+**Caso seja necessário atualizar o GitHub Desktop:**
+```shellscript
+flatpak --user update io.github.shiftey.Desktop
+```
+
+## Mantendo as Mirrors atualizadas (Cada 1 mês):
 ```shellscript
 sudo reflector --verbose --latest 25 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
@@ -200,12 +205,7 @@ eos-rankmirrors
 yay -Syyu
 ```
 
-**Caso seja necessário atualizar o GitHub Desktop:**
-```shellscript
-flatpak --user update io.github.shiftey.Desktop
-```
-
-## !!! ATENÇÃO !!!
+# !!! ATENÇÃO !!!
 **Sempre ao iniciar seu sistema ou até mesmo antes de instalar qualquer aplicativo ou pacote use o script abaixo para evitar causar instabilidades ou até mesmo quebrar o sistema:**
 **Mantenha seu sistema atualizado**
 ```shellscript
