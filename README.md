@@ -31,7 +31,7 @@ A seleção de programas escolhidos, é a que utilizo em minha rotina atual, ent
 
 Neste roteiro considero que estamos partindo de uma instalação PADRÃO do EndeavourOS com o ambiente KDE Plasma, com todas as atualizações recomendadas instaladas. A **instalação mínima** pode apresentar erros na instalação de algum aplicativo, fique atento nas mensagens de erro para instalar os pacotes extras que forem necessários.
 
-Meu setup padrão considera que será utilizada uma GPU AMD RADEON 520 e um processador Intel®Core™ i7-8565U 1.80GHz. Por fim, caso precise, eu prefiro utilizar o formato flatpak sempre que possível, adapte conforme suas preferências/necessidades.
+Meu setup padrão utiliza uma GPU AMD RADEON 520 e um processador Intel®Core™ i7-8565U 1.80GHz. Prefiro utilizar o formato flatpak sempre que possível, adapte conforme suas preferências/necessidades.
 
 
 ---
@@ -51,21 +51,20 @@ yay -Syyu
 
 **Editando o arquivo de configurações de Downloads (OPCIONAL):**
 
-Alterar numero de downloads ao mesmo tempo:
+Alterar numero de downloads simutâneos:
 ```shellscript
 sudo nano /etc/pacman.conf
 ```
 
 Aumentar o número de núcleos utilizados pelo sistema:
-Descomentar a linha MAKEFLAGS de "-j1" para o número de núcleos do SEU processador:
+Descomentar a linha MAKEFLAGS e altere o numero presente em "-j1" para o número de núcleos do SEU processador:
 ```shellscript
 sudo nano /etc/makepkg.conf
 ```
 
-## Ativação de repositórios extras de Codecs
+## Repositórios extras de Codecs
 
 São vários repositórios que disponibiliza Codecs para arquivos de Video, Musica e Ferramentas de Multimedia:
-
 ```shellscript
 sudo pacman -Syu ffmpeg gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer
 ```
@@ -73,20 +72,19 @@ sudo pacman -Syu ffmpeg gst-plugins-ugly gst-plugins-good gst-plugins-base gst-p
 ## Instalação drivers de vídeo AMD
 
 Os drivers da AMD/ATI estão disponíveis desde a instalação padrão do EndeavourOS, para instá-los geralmente não é preciso fazer manualmente, mas por garantia gosto de fazer.
-
 ```shellscript
 sudo pacman -Syu vulkan-radeon libva-mesa-driver vulkan-icd-loader lib32-mesa lib32-vulkan-radeon lib32-vulkan-icd-loader lib32-libva-mesa-driver mesa-demos amd-ucode mesa-utils xorg-xdpyinfo
 ```
 
 ---
 
-# Preparação do ambiente para produtividade
+# Preparação do ambiente para Produtividade
 
 ## Instalação dos Programas/Aplicativos (OPCIONAL)
 
 **Lembrete: Suporte a Flatpak no sistema já é NATIVO**
 
-O script abaixo instala Telegram Desktop, Nano Editor de Texto do Terminal, Neofetch, Discord, TimeShift, GParted, OBS Studio, btop.
+O script abaixo instala Telegram Desktop, Nano, Neofetch, Discord, TimeShift, GParted, OBS Studio, BTop.
 
 ```shellscript
 sudo pacman -Syu telegram-desktop nano neofetch discord timeshift gparted obs-studio btop
@@ -113,6 +111,18 @@ flatpak install steam
 ```
 Se for necessário, utilizando o FlatSeal libere as permissões do pacote flatpak do Steam para acessar outras Unidades de Disco. Atente-se a permissão de leitura e escrita está habilitada na Patição/Disco em questão.
 
+**Instala o Emulador de PlayStation 2**
+```shellscript
+flatpak install pcsx2
+```
+Baixe a BIOS do PS2 (Tem Japones, Europa e EUA): https://drive.google.com/file/d/1CpYndKs9liMll0r1XhiVARIMAULQBr9M/view
+
+**Instala o Emulador de Super Nitendo**
+```shellscript
+flatpak install snes9x
+```
+BONUS: 230 Jogos de SuperNitendo traduzidos para PT-BR --> https://www.mediafire.com/file/e9e96gq6acijdus/Pack+230+jogos+Super+Nintendo+Traduzidos+GAMERPRO.zip
+
 **Instala o Github Desktop:**
 ```shellscript
 flatpak install --user https://flathub.org/repo/appstream/io.github.shiftey.Desktop.flatpakref
@@ -123,26 +133,22 @@ flatpak install --user https://flathub.org/repo/appstream/io.github.shiftey.Desk
 flatpak install flathub com.visualstudio.code
 ```
 
-**Instala o Visual Studio Code:**
-```shellscript
-flatpak install flathub com.visualstudio.code
-```
 
 ## Instalação de ferramentas gráficas: Gimp, Inskcape, Shotcut, ColorPicker.
 
-Canivete suíço de criação de conteúdo, tratamento de imagens, desenho vetorial e edição de vídeo usando software livre.
-
+Apps para criação de conteúdo, tratamento de imagens, desenho vetorial e edição de vídeo usando software livre.
 ```shellscript
-flatpak install org.gimp.GIMP com.obsproject.Studio nl.hjdskes.gcolor3 org.flameshot.Flameshot org.inkscape.Inkscape org.shotcut.Shotcut
+flatpak install org.gimp.GIMP com.obsproject.Studio nl.hjdskes.gcolor3 org.inkscape.Inkscape 
 ```
 
 ## Hora de dar o visual desejado ao EndeavourOS
 **Deixo esse tópico aberto pois é pessoal de cada um, eu particularmente altero algumas opções do KDE Plasma e já acho suficiente. Fique a vontade para fazer/criar sua própria personalização**
 
 ## Partições montadas automaticamente ao iniciar o sistema (OPCIONAL)
-Eu uso o GParted para gerenciar minhas Partições e Discos. Use as que você preferir.
 
-Veja suas partições:
+Eu uso o GParted para gerenciar minhas Partições e Discos. Use o App que preferir que você preferir.
+
+Veja as informações de suas Partições:
 ```shellscript
 sudo fdisk -l
 ```
@@ -156,7 +162,7 @@ Coloque suas partições para iniciarem junto ao sistema:
 ```shellscript
 sudo nano /etc/fstab
 ```
-Explicação: No fim do arquivo adicione uma linha referente a partição em específico que você quer montar, se for mais de uma partição/disco adicione mais linhas, faça como o exemplo abaixo:
+Explicação: No fim do arquivo adicione uma linha referente a partição específica que você quer montar, se for mais de uma partição/disco adicione mais linhas, faça como o exemplo abaixo:
 ```shellscript
 /dev/sd*X /mnt/nomedapartição ext4 defaults 0 0
 ```
@@ -164,7 +170,7 @@ Explicação: No fim do arquivo adicione uma linha referente a partição em esp
 X = Número da partição/disco.
 Onde tem “ext4” você altera para o formato em que seu HD/SSD foi formatado.
 
-Aplique permissões de leitura e escrita na partições/disco com o comando abaixo:
+Aplique permissões de leitura e escrita na partição/disco com o comando abaixo:
 ```shellscript
 sudo chmod 777 /mnt/nomedapartição
 ```
@@ -189,17 +195,6 @@ eos-rankmirrors
 yay -Syyu
 ```
 
-**Manter sistema atualizado - Atualiza Lista de Pacotes e Sistema: (1 vez na semana):**
-```shellscript
-sudo pacman -Syu
-```
-```shellscript
-yay -Syyu
-```
-```shellscript
-yay
-```
-
 **Caso seja necessário atualizar o GitHub Desktop:**
 ```shellscript
 flatpak --user update io.github.shiftey.Desktop
@@ -207,7 +202,11 @@ flatpak --user update io.github.shiftey.Desktop
 
 ## !!! ATENÇÃO !!!
 **Sempre ao iniciar seu sistema ou até mesmo antes de instalar qualquer aplicativo ou pacote use o script abaixo para evitar causar instabilidades ou até mesmo quebrar o sistema:**
-**Caso seja necessário atualizar o GitHub Desktop:**
+**Mantenha seu sistema atualizado**
 ```shellscript
-sudo pacman -Syu
+yay -Syyu
+```
+**Na documentação do ArchLinux diz que o usuário deve sempre usar o exemplo abaixo ao instalar novos pacotes:**
+```shellscript
+sudo pacman -Syu nomedopacote
 ```
