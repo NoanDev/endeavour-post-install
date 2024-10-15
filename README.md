@@ -19,7 +19,7 @@ Ao usar este roteiro você assume que entende os riscos e assume total responsab
 
 # Objetivos
 
-Esse roteiro funciona como um guia passo a passo para apoiar a pós-instalação/configuração de uma máquina de trabalho baseada no EndeavourOS para atividades de Gameplays, Edição de Vídeo/Fotos, e Programação.
+Esse roteiro funciona como um guia passo a passo para apoiar a pós-instalação/configuração de uma máquina de trabalho baseada no ArchLinux para atividades de Gameplays, Edição de Vídeo/Fotos, e Programação.
 
 O objetivo deste roteiro **não é ser um script totalmente automatizado**, utilizo ele em meu ambiente, sendo  recomendado e testado apenas no EndeavourOS. Caso você queira seguir este roteiro em distros com outras bases, lembre-se de modificar os pacotes e comandos necessários por conta e risco, moldando conforme necessário para seu sistema.
 
