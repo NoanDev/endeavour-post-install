@@ -134,7 +134,7 @@ flatpak install flathub com.visualstudio.code
 ```
 
 
-## Instalação de ferramentas gráficas: Gimp, Inskcape, Shotcut, ColorPicker.
+## Instalação de ferramentas gráficas: Gimp, Inskcape, ColorPicker.
 
 Apps para criação de conteúdo, tratamento de imagens, desenho vetorial e edição de vídeo usando software livre.
 ```shellscript
@@ -191,7 +191,12 @@ paccache -r
 **Mantendo as Mirrors atualizadas (Cada 1 mês):**
 ```shellscript
 sudo reflector --verbose --latest 25 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+```
+```shellscript
 eos-rankmirrors
+```
+```shellscript
 yay -Syyu
 ```
 
