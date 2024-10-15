@@ -99,6 +99,16 @@ sudo pacman -Syu telegram-desktop nano neofetch discord timeshift gparted obs-st
 yay -S vivaldi
 ```
 
+**Instala o Github Desktop:**
+```shellscript
+flatpak install --user https://flathub.org/repo/appstream/io.github.shiftey.Desktop.flatpakref
+```
+
+**Instala o Visual Studio Code:**
+```shellscript
+flatpak install flathub com.visualstudio.code
+```
+
 **Instala o Bottles:**
 ```shellscript
 flatpak instal bottles
@@ -126,6 +136,7 @@ Baixe a BIOS do PS2 (Tem Japones, Europa e EUA): https://drive.google.com/file/d
 ---
 
 Baixe TODOS os jogos de Ps2 ( 2TB ): https://drive.google.com/file/d/1chVGDlyiP1WZ1xHhqNpHx23RpprDYJu6/view?usp=sharing
+
 ---
 
 **Instala o Emulador de Super Nitendo**
@@ -133,18 +144,8 @@ Baixe TODOS os jogos de Ps2 ( 2TB ): https://drive.google.com/file/d/1chVGDlyiP1
 flatpak install snes9x
 ```
 Baixe 230 Jogos de SuperNitendo traduzidos para PT-BR --> https://drive.google.com/file/d/1Sf-qYhBFOiKt94K3AfY7U1meXpNhPKWK/view?usp=sharing
+
 ---
-
-**Instala o Github Desktop:**
-```shellscript
-flatpak install --user https://flathub.org/repo/appstream/io.github.shiftey.Desktop.flatpakref
-```
-
-**Instala o Visual Studio Code:**
-```shellscript
-flatpak install flathub com.visualstudio.code
-```
-
 
 ## Instalação de ferramentas gráficas: Gimp, Inskcape, ColorPicker.
 
