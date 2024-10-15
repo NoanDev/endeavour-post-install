@@ -195,6 +195,33 @@ sudo chmod 777 /mnt/nomedapartição
 
 ---
 
+## Instalando o XAMPP (OPCIONAL)
+
+Baixe o XAMPP:
+```shellscript
+https://www.apachefriends.org/download.html
+```
+Execute os seguintes comandos para instalar:
+```shellscript
+cd Downloads
+```
+```shellscript
+sudo chmod +x nomedoarquivobaixado
+```
+```shellscript
+sudo ./nomedoarquivogerado
+```
+DICA: No nome do arquivo basta por "xamp" e apertar TAB que o nome vai ser completado.
+
+- Ao instalar você terá a Interface Gráfica mas ao fechar não terá mais e terá que executar via terminal com os comandos abaixo:
+```shellscript
+sudo /opt/lampp/lampp start
+```
+- Para parar o XAMPP é o mesmo comando porém no lugar de "start" coloque "stop".
+
+
+---
+
 # Manutenções de uso (Fazer a cada 2 ou 4 meses)
 
 **Limpa arquivos de configuração antigos:**
