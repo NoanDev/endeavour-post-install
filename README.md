@@ -120,6 +120,9 @@ Se for necessário, utilizando o FlatSeal libere as permissões do pacote flatpa
 flatpak install pcsx2
 ```
 Baixe a BIOS do PS2 (Tem Japones, Europa e EUA): https://drive.google.com/file/d/17b6sCwUxrnO0WVxqTGnWHCSGKeiG_5Lz/view?usp=sharing
+
+-
+
 Baixe TODOS os jogos de Ps2 ( 2TB ): https://drive.google.com/file/d/1chVGDlyiP1WZ1xHhqNpHx23RpprDYJu6/view?usp=sharing
 
 **Instala o Emulador de Super Nitendo**
