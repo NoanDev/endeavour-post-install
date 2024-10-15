@@ -45,7 +45,11 @@ Por garantia prefiro ter certeza que os Mirrors estão configurados e são os ma
 
 ```shellscript
 sudo reflector --verbose --latest 25 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+```
+```shellscript
 eos-rankmirrors
+```
+```shellscript
 yay -Syyu
 ```
 
@@ -175,6 +179,7 @@ Aplique permissões de leitura e escrita na partição/disco com o comando abaix
 sudo chmod 777 /mnt/nomedapartição
 ```
 
+---
 
 # Manutenções de uso (Fazer a cada 2 ou 4 meses)
 
