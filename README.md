@@ -135,7 +135,10 @@ Baixe a BIOS do PS2 (Tem Japones, Europa e EUA): https://drive.google.com/file/d
 
 ---
 
-Baixe TODOS os jogos de Ps2 ( 2TB ): https://drive.google.com/file/d/1chVGDlyiP1WZ1xHhqNpHx23RpprDYJu6/view?usp=sharing
+Baixe TODOS os jogos de Ps2 .Torrent ( 2TB ):
+```shellscript
+https://drive.google.com/file/d/1chVGDlyiP1WZ1xHhqNpHx23RpprDYJu6/view?usp=sharing
+```
 
 ---
 
@@ -143,8 +146,10 @@ Baixe TODOS os jogos de Ps2 ( 2TB ): https://drive.google.com/file/d/1chVGDlyiP1
 ```shellscript
 flatpak install snes9x
 ```
-Baixe 230 Jogos de SuperNitendo traduzidos para PT-BR --> https://drive.google.com/file/d/1Sf-qYhBFOiKt94K3AfY7U1meXpNhPKWK/view?usp=sharing
-
+Baixe 230 Jogos de SuperNitendo traduzidos para PT-BR ( 243MB ):
+```shellscript
+https://drive.google.com/file/d/1Sf-qYhBFOiKt94K3AfY7U1meXpNhPKWK/view?usp=sharing
+```
 ---
 
 ## Instalação de ferramentas gráficas: Gimp, Inskcape, ColorPicker.
