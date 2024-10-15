@@ -201,6 +201,10 @@ Baixe o XAMPP:
 ```shellscript
 https://www.apachefriends.org/download.html
 ```
+Instale o pacote "libxcrypt-compat" para funcionar corretamente:
+```shellscript
+yay -S libxcrypt-compat
+```
 Execute os seguintes comandos para instalar:
 ```shellscript
 cd Downloads
@@ -218,7 +222,6 @@ DICA: No nome do arquivo basta por "xamp" e apertar TAB que o nome vai ser compl
 sudo /opt/lampp/lampp start
 ```
 - Para parar o XAMPP é o mesmo comando porém no lugar de "start" coloque "stop".
-
 
 ---
 
