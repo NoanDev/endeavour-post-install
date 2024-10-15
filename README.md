@@ -119,13 +119,13 @@ Se for necessário, utilizando o FlatSeal libere as permissões do pacote flatpa
 ```shellscript
 flatpak install pcsx2
 ```
-Baixe a BIOS do PS2 (Tem Japones, Europa e EUA): https://drive.google.com/file/d/1CpYndKs9liMll0r1XhiVARIMAULQBr9M/view
+Baixe a BIOS do PS2 (Tem Japones, Europa e EUA): https://drive.google.com/file/d/17b6sCwUxrnO0WVxqTGnWHCSGKeiG_5Lz/view?usp=sharing
 
 **Instala o Emulador de Super Nitendo**
 ```shellscript
 flatpak install snes9x
 ```
-BONUS: 230 Jogos de SuperNitendo traduzidos para PT-BR --> https://www.mediafire.com/file/e9e96gq6acijdus/Pack+230+jogos+Super+Nintendo+Traduzidos+GAMERPRO.zip
+BONUS: 230 Jogos de SuperNitendo traduzidos para PT-BR --> https://drive.google.com/file/d/1Sf-qYhBFOiKt94K3AfY7U1meXpNhPKWK/view?usp=sharing
 
 **Instala o Github Desktop:**
 ```shellscript
