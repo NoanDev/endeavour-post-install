@@ -116,6 +116,7 @@ flatpak install steam
 Se for necessário, utilizando o FlatSeal libere as permissões do pacote flatpak do Steam para acessar outras Unidades de Disco. Atente-se a permissão de leitura e escrita está habilitada na Patição/Disco em questão.
 
 ---
+
 **Instala o Emulador de PlayStation 2**
 ```shellscript
 flatpak install pcsx2
