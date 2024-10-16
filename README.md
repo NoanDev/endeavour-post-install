@@ -19,9 +19,9 @@ Ao usar este roteiro você assume que entende os riscos e assume total responsab
 
 # Objetivos
 
-Esse roteiro funciona como um guia passo a passo para apoiar a pós-instalação/configuração de uma máquina de trabalho baseada no ArchLinux para atividades de Gameplays, Edição de Vídeo/Fotos, e Programação.
+Esse roteiro funciona como um guia passo a passo para apoiar a pós-instalação/configuração de uma máquina de trabalho baseada no **ArchLinux** para atividades de Gameplays, Edição de Vídeo/Fotos, e Programação.
 
-O objetivo deste roteiro **não é ser um script totalmente automatizado**, utilizo ele em meu ambiente, sendo  recomendado e testado apenas no EndeavourOS. Caso você queira seguir este roteiro em distros com outras bases, lembre-se de modificar os pacotes e comandos necessários por conta e risco, moldando conforme necessário para seu sistema.
+O objetivo deste roteiro **não é ser um script totalmente automatizado**, utilizo ele em meu ambiente, sendo  recomendado e testado apenas no **EndeavourOS**. Caso você queira seguir este roteiro em distros com outras bases, lembre-se de modificar os pacotes e comandos necessários por conta e risco, moldando conforme necessário para seu sistema.
 
 A seleção de programas escolhidos, é a que utilizo em minha rotina atual, então remova ou adicione programas de acordo com sua necessidade.
 
@@ -29,9 +29,9 @@ A seleção de programas escolhidos, é a que utilizo em minha rotina atual, ent
 ---
 
 
-Neste roteiro considero que estamos partindo de uma instalação PADRÃO do EndeavourOS com o ambiente KDE Plasma, com todas as atualizações recomendadas instaladas. A **instalação mínima** pode apresentar erros na instalação de algum aplicativo, fique atento nas mensagens de erro para instalar os pacotes extras que forem necessários.
+Neste roteiro considero que estamos partindo de uma instalação PADRÃO do **EndeavourOS** com o ambiente **KDE Plasma**, com todas as atualizações recomendadas instaladas. A **instalação mínima** pode apresentar erros na instalação de algum aplicativo, fique atento nas mensagens de erro para instalar os pacotes extras que forem necessários.
 
-Meu setup padrão utiliza uma GPU AMD RADEON 520 e um processador Intel®Core™ i7-8565U 1.80GHz. Prefiro utilizar o formato flatpak sempre que possível, adapte conforme suas preferências/necessidades.
+Meu setup padrão utiliza uma **GPU AMD RADEON 520** e um processador **Intel®Core™ i7-8565U 1.80GHz**.
 
 
 ---
@@ -53,7 +53,7 @@ eos-rankmirrors
 yay -Syyu
 ```
 
-**Editando o arquivo de configurações de Downloads (OPCIONAL):**
+## Editando o arquivo de configurações de Downloads (OPCIONAL):
 
 Alterar numero de downloads simutâneos:
 ```shellscript
@@ -254,6 +254,8 @@ eos-rankmirrors
 yay -Syyu
 ```
 
+---
+
 # !!! ATENÇÃO !!!
 **Sempre ao iniciar seu sistema ou até mesmo antes de instalar qualquer aplicativo ou pacote use o script abaixo para evitar causar instabilidades ou até mesmo quebrar o sistema:**
 **Mantenha seu sistema atualizado**
@@ -264,3 +266,5 @@ yay -Syyu
 ```shellscript
 sudo pacman -Syu nomedopacote
 ```
+
+---
