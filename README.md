@@ -222,11 +222,11 @@ sudo ./nomedoarquivogerado
 ```
 DICA: No nome do arquivo basta por "xamp" e apertar TAB que o nome vai ser completado.
 
-- Ao instalar você terá a Interface Gráfica mas ao fechar não terá mais e terá que executar via terminal com os comandos abaixo:
+- Ao instalar você terá a Interface Gráfica mas ao fechar não terá mais. Sempre que precisar execute via terminal com o comando abaixo:
 ```shellscript
 sudo /opt/lampp/lampp start
 ```
-- Para parar o XAMPP é o mesmo comando porém no lugar de "start" coloque "stop".
+- Parar o XAMPP é o mesmo comando,g porém no lugar de "start" coloque "stop".
 
 ---
 
