@@ -226,7 +226,7 @@ DICA: No nome do arquivo basta por "xamp" e apertar TAB que o nome vai ser compl
 ```shellscript
 sudo /opt/lampp/lampp start
 ```
-- Parar o XAMPP é o mesmo comando,g porém no lugar de "start" coloque "stop".
+- Parar o XAMPP é o mesmo comando, porém no lugar de "start" coloque "stop".
 
 ---
 
