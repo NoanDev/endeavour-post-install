@@ -99,6 +99,11 @@ sudo pacman -Syu telegram-desktop nano neofetch discord timeshift gparted obs-st
 yay -S vivaldi
 ```
 
+**Instala o ProtonVPN:**
+```shellscript
+flatpak install flathub com.protonvpn.www
+```
+
 **Instala o Github Desktop:**
 ```shellscript
 flatpak install --user https://flathub.org/repo/appstream/io.github.shiftey.Desktop.flatpakref
