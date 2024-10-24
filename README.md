@@ -267,6 +267,10 @@ yay -Syyu
 ```shellscript
 yay -Syyu
 ```
+Não esqueça de mander os Pacotes Flatpak atualizados tambem:
+```shellscript
+flatpak update
+```
 **Na documentação do ArchLinux diz que o usuário deve sempre usar o exemplo abaixo ao instalar novos pacotes:**
 ```shellscript
 sudo pacman -Syu nomedopacote
