@@ -70,14 +70,14 @@ sudo nano /etc/makepkg.conf
 
 São vários repositórios que disponibiliza Codecs para arquivos de Video, Musica e Ferramentas de Multimedia:
 ```shellscript
-sudo pacman -Syu ffmpeg gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer
+sudo pacman -S ffmpeg gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer
 ```
 
 ## Instalação drivers de vídeo AMD
 
 Os drivers da AMD/ATI estão disponíveis desde a instalação padrão do EndeavourOS, para instá-los geralmente não é preciso fazer manualmente, mas por garantia gosto de fazer.
 ```shellscript
-sudo pacman -Syu vulkan-radeon libva-mesa-driver vulkan-icd-loader lib32-mesa lib32-vulkan-radeon lib32-vulkan-icd-loader lib32-libva-mesa-driver mesa-demos amd-ucode mesa-utils xorg-xdpyinfo
+sudo pacman -S vulkan-radeon libva-mesa-driver vulkan-icd-loader lib32-mesa lib32-vulkan-radeon lib32-vulkan-icd-loader lib32-libva-mesa-driver mesa-demos amd-ucode mesa-utils xorg-xdpyinfo
 ```
 
 ---
@@ -91,7 +91,7 @@ sudo pacman -Syu vulkan-radeon libva-mesa-driver vulkan-icd-loader lib32-mesa li
 O script abaixo instala Telegram Desktop, Nano, Neofetch, Discord, TimeShift, GParted, OBS Studio, BTop.
 
 ```shellscript
-sudo pacman -Syu telegram-desktop nano neofetch discord timeshift gparted obs-studio btop
+sudo pacman -S telegram-desktop nano neofetch discord timeshift gparted obs-studio btop
 ```
 
 **Instala o Browser Vivaldi:**
@@ -116,7 +116,7 @@ flatpak install flathub com.visualstudio.code
 
 **Instala o Bottles:**
 ```shellscript
-flatpak instal bottles
+flatpak install bottles
 ```
 
 **Instala o FlatSeal:**
@@ -140,7 +140,7 @@ Baixe a BIOS do PS2 (Japones, Europa e EUA):
 ```shellscript
 https://drive.google.com/file/d/17b6sCwUxrnO0WVxqTGnWHCSGKeiG_5Lz/view?usp=sharing
 ```
-Baixe TODOS os jogos de Ps2 .Torrent ( 2TB ):
+Baixe TODOS os jogos de Ps2 .Torrent ( 2TB Completo ou selecione os Jogos que você quiser):
 ```shellscript
 https://drive.google.com/file/d/1chVGDlyiP1WZ1xHhqNpHx23RpprDYJu6/view?usp=sharing
 ```
@@ -165,7 +165,7 @@ flatpak install org.gimp.GIMP com.obsproject.Studio nl.hjdskes.gcolor3 org.inksc
 ```
 
 ## Hora de dar o visual desejado ao EndeavourOS
-**Deixo esse tópico aberto pois é pessoal de cada um, eu particularmente altero algumas opções do KDE Plasma e já acho suficiente. Fique a vontade para fazer/criar sua própria personalização**
+**Deixo esse tópico aberto pois é pessoal de cada um, eu particularmente altero algumas opções do i3wm que é a interface que uso e já acho suficiente. Fique a vontade para fazer sua própria personalização**
 
 ## Partições montadas automaticamente ao iniciar o sistema (OPCIONAL)
 
@@ -230,7 +230,7 @@ sudo /opt/lampp/lampp start
 
 ---
 
-# Manutenções de uso (Fazer a cada 2 ou 4 meses)
+# Manutenções de Uso (Fazer a cada 2 ou 4 meses)
 
 **Limpa arquivos de configuração antigos:**
 ```shellscript
