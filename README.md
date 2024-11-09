@@ -86,7 +86,13 @@ sudo pacman -S vulkan-radeon libva-mesa-driver vulkan-icd-loader lib32-mesa lib3
 
 ## Instalação dos Programas/Aplicativos (OPCIONAL)
 
-**Lembrete: Suporte a Flatpak no sistema já é NATIVO**
+**Lembrete: Instale o suporte a Flatpak**
+```shellscript
+sudo pacman -S flatpak
+```
+```shellscript
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+```
 
 O script abaixo instala Telegram Desktop, Chromium, Nano, Fastfetch, Discord, TimeShift, GParted, OBS Studio, HTop.
 
