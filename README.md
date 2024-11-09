@@ -19,7 +19,7 @@ Ao usar este roteiro você assume que entende os riscos e assume total responsab
 
 # Objetivos
 
-Esse roteiro funciona como um guia passo a passo para apoiar a pós-instalação/configuração de uma máquina de trabalho baseada no **ArchLinux** para atividades de Gameplays, Edição de Vídeo/Fotos, e Programação.
+Esse roteiro funciona como um guia passo a passo para apoiar a pós-instalação/configuração de uma máquina de trabalho baseada no **ArchLinux** para atividades leves de Gameplays, Edição de Vídeo/Fotos, e Programação.
 
 O objetivo deste roteiro **não é ser um script totalmente automatizado**, utilizo ele em meu ambiente, sendo  recomendado e testado apenas no **EndeavourOS**. Caso você queira seguir este roteiro em distros com outras bases, lembre-se de modificar os pacotes e comandos necessários por conta e risco, moldando conforme necessário para seu sistema.
 
@@ -29,7 +29,7 @@ A seleção de programas escolhidos, é a que utilizo em minha rotina atual, ent
 ---
 
 
-Neste roteiro considero que estamos partindo de uma instalação PADRÃO do **EndeavourOS** com o ambiente **KDE Plasma**, com todas as atualizações recomendadas instaladas. A **instalação mínima** pode apresentar erros na instalação de algum aplicativo, fique atento nas mensagens de erro para instalar os pacotes extras que forem necessários.
+Neste roteiro considero que estamos partindo de uma instalação PADRÃO do **EndeavourOS** com todas as atualizações recomendadas instaladas. A **instalação mínima** pode apresentar erros na instalação de algum aplicativo, fique atento nas mensagens de erro para instalar os pacotes extras que forem necessários.
 
 Meu setup padrão utiliza uma **GPU AMD RADEON 520** e um processador **Intel®Core™ i7-8565U 1.80GHz**.
 
@@ -44,10 +44,10 @@ Meu setup padrão utiliza uma **GPU AMD RADEON 520** e um processador **Intel®C
 Por garantia prefiro ter certeza que os Mirrors estão configurados e são os mais rápidos.
 
 ```shellscript
-sudo reflector --verbose --latest 25 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+eos-rankmirrors
 ```
 ```shellscript
-eos-rankmirrors
+sudo reflector --verbose --latest 25 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 ```
 ```shellscript
 yay -Syyu
@@ -88,15 +88,10 @@ sudo pacman -S vulkan-radeon libva-mesa-driver vulkan-icd-loader lib32-mesa lib3
 
 **Lembrete: Suporte a Flatpak no sistema já é NATIVO**
 
-O script abaixo instala Telegram Desktop, Nano, Neofetch, Discord, TimeShift, GParted, OBS Studio, BTop.
+O script abaixo instala Telegram Desktop, Chromium, Nano, Fastfetch, Discord, TimeShift, GParted, OBS Studio, HTop.
 
 ```shellscript
-sudo pacman -S telegram-desktop nano neofetch discord timeshift gparted obs-studio btop
-```
-
-**Instala o Browser Vivaldi:**
-```shellscript
-yay -S vivaldi
+sudo pacman -S telegram-desktop chromium nano fastfetch discord timeshift gparted obs-studio htop
 ```
 
 **Instala o ProtonVPN:**
@@ -157,15 +152,15 @@ https://drive.google.com/file/d/1Sf-qYhBFOiKt94K3AfY7U1meXpNhPKWK/view?usp=shari
 ```
 ---
 
-## Instalação de ferramentas gráficas: Gimp, Inskcape, ColorPicker.
+## Instalação de ferramentas gráficas: Gimp, Inskcape, ColorPicker e Kdenlive
 
 Apps para criação de conteúdo, tratamento de imagens, desenho vetorial e edição de vídeo usando software livre.
 ```shellscript
-flatpak install org.gimp.GIMP com.obsproject.Studio nl.hjdskes.gcolor3 org.inkscape.Inkscape 
+flatpak install org.gimp.GIMP org.inkscape.Inkscape nl.hjdskes.gcolor3 org.kde.kdenlive
 ```
 
 ## Hora de dar o visual desejado ao EndeavourOS
-**Deixo esse tópico aberto pois é pessoal de cada um, eu particularmente altero algumas opções do i3wm que é a interface que uso e já acho suficiente. Fique a vontade para fazer sua própria personalização**
+**Deixo esse tópico aberto pois é pessoal de cada um, eu particularmente uso Tile Windows Manager (i3wm) e na instalação do EndeavourOS já tem a opção de escolhe-la e já vem bem utilizável. Fique a vontade para fazer sua própria personalização a depender da Interface Gráfica de sua escolha.**
 
 ## Partições montadas automaticamente ao iniciar o sistema (OPCIONAL)
 
@@ -249,11 +244,11 @@ flatpak --user update io.github.shiftey.Desktop
 
 ## Mantendo as Mirrors atualizadas (Cada 1 mês):
 ```shellscript
-sudo reflector --verbose --latest 25 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-
+eos-rankmirrors
 ```
 ```shellscript
-eos-rankmirrors
+sudo reflector --verbose --latest 25 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
 ```
 ```shellscript
 yay -Syyu
