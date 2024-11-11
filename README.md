@@ -278,3 +278,17 @@ sudo pacman -Syu nomedopacote
 ```
 
 ---
+
+Fiz uma automatização para tudo isso porque sou preguiçoso, caso queira usar fique a vontade!
+```shellscript
+git clone https://github.com/SirGuinna/endeavouros-post-install
+```
+```shellscript
+cd endeavouros-post-install
+```
+```shellscript
+chmod +x post_install.sh
+```
+```shellscript
+./post_install.sh
+```
