@@ -1,90 +1,117 @@
 #!/bin/bash
 
-# Verifica se o eos-rankmirrors está instalado
-if ! command -v eos-rankmirrors &> /dev/null
-    then
+# Verifica se o script está sendo executado com permissões de root
+if [ "$(id -u)" -ne 0 ]; then
+    echo "Este script precisa ser executado como root."
+    echo "This script needs to be run as root."
+    exit 1
+fi
+
+# Habilita o modo de falha imediata (interrompe o script se qualquer comando falhar)
+set -e
+
+# Funcao para verificar e instalar o eos-rankmirrors
+verificar_e_instalar_eos_rankmirrors() {
+    if ! command -v eos-rankmirrors &> /dev/null; then
         echo "eos-rankmirrors not found. Installing..."
         sudo pacman -S eos-rankmirrors --noconfirm
     else
         echo "eos-rankmirrors already installed."
     fi
+    # Verificar se o comando foi instalado com sucesso
+    if ! command -v eos-rankmirrors &> /dev/null; then
+        echo "eos-rankmirrors installation failed. Exiting."
+        exit 1
+    fi
+}
 
-# Atualiza os espelhos com eos-rankmirrors
-echo "Ranking mirrors with eos-rankmirrors..."
-eos-rankmirrors
+# Funcao para verificar e instalar yay
+verificar_e_instalar_yay() {
+    if ! command -v yay &> /dev/null; then
+        echo "YAY is not installed. Installing YAY..."
+        sudo pacman -S yay --noconfirm
+    else
+        echo "YAY is already installed."
+    fi
+}
 
-# Atualiza a lista de espelhos com Reflector (pega os 25 mais rápidos, usa https e classifica por taxa de transferência)
-echo "Updating the list of mirrors with Reflector..."
-sudo reflector --verbose --latest 25 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+# Funcao para instalar o Flatpak e adicionar o repositorio Flathub
+instalar_flatpak_e_adicionar_flathub() {
+    # Verifica e instala o Flatpak
+    if ! command -v flatpak &> /dev/null; then
+        echo "Flatpak is not installed. Installing Flatpak..."
+        sudo pacman -S flatpak --noconfirm
+    fi
+    # Verifica e adiciona o repositorio Flathub se ainda nao estiver adicionado
+    if ! flatpak remote-list | grep -q flathub; then
+        echo "Adding Flathub repository..."
+        flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    else
+        echo "Flathub repository already added."
+    fi
+}
 
-# Verifica se o yay está instalado
-if ! command -v yay &> /dev/null
-then
-    echo "YAY it's not installed. Installing YAY..."
-    sudo pacman -S yay --noconfirm
-fi
+# Funcao para instalar pacotes essenciais
+instalar_pacotes_essenciais() {
+    echo "Installing essential packages..."
+    sudo pacman -S --noconfirm \
+        git \
+        nano \
+        wget \
+        curl \
+        htop \
+        fastfetch
+}
 
-# Atualiza o sistema usando yay
-echo "Updating the system with YAY..."
-yay -Syyu --noconfirm
+# Funcao para instalar codecs de multimidia
+instalar_codecs() {
+    echo "Installing multimedia codecs..."
+    sudo pacman -S --noconfirm \
+        gstreamer \
+        ffmpeg \
+        gst-libav \
+        gst-plugins-ugly \
+        gst-plugins-good \
+        gst-plugins-bad \
+        gst-plugins-base
+}
 
-# Instala pacotes essenciais
-echo "Installing essential packages..."
-sudo pacman -S --noconfirm \
-    git \
-    nano \
-    wget \
-    curl \
-    htop \
-    fastfetch
+# Funcao para instalar drivers de video AMD
+instalar_drivers_amd() {
+    echo "Installing AMD video drivers..."
+    sudo pacman -S --noconfirm \
+        vulkan-radeon \
+        libva-mesa-driver \
+        vulkan-icd-loader \
+        lib32-mesa \
+        lib32-vulkan-radeon \
+        lib32-vulkan-icd-loader \
+        lib32-libva-mesa-driver \
+        gst-plugins-base \
+        mesa-demos \
+        amd-ucode \
+        mesa-utils \
+        xorg-xdpyinfo
+}
 
-# Instala codecs de multimídia
-echo "Installing multimedia codecs..."
-sudo pacman -S --noconfirm \
-    gstreamer \
-    ffmpeg \
-    gst-libav \
-    gst-plugins-ugly \
-    gst-plugins-good \
-    gst-plugins-bad \
-    gst-plugins-base
+# Funcao para instalar softwares essenciais via pacman
+instalar_softwares() {
+    echo "Installing essential applications..."
+    sudo pacman -S --noconfirm \
+        chromium \
+        obs-studio \
+        timeshift \
+        gparted \
+        discord
+}
 
-# Instala Drivers de Video AMD
-echo "Installing AMD video drivers..."
-sudo pacman -S --noconfirm \
-    vulkan-radeon \
-    libva-mesa-driver \
-    vulkan-icd-loader \
-    lib32-mesa \
-    lib32-vulkan-radeon \
-    lib32-vulkan-icd-loader \
-    lib32-libva-mesa-driver \
-    gst-plugins-base \
-    mesa-demos \
-    amd-ucode \
-    mesa-utils \
-    xorg-xdpyinfo
+# Funcao para instalar softwares adicionais via yay
+instalar_softwares_adicionais() {
+    echo "Installing GitHub Desktop with YAY..."
+    yay -S github-desktop-bin --noconfirm
+}
 
-# Instala o suporte a Flatpak e adiciona o Repositório Flathub
-echo "Installing Flatpak support..."
-sudo pacman -S flatpak --noconfirm
-echo "Adding Flathub repository..."
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-# Instala softwares
-echo "Installing applications..."
-sudo pacman -S --noconfirm \
-    chromium \
-    obs-studio \
-    timeshift \
-    gparted \
-    discord
-
-# Instala softwares adicionais
-echo "Installing additional applications..."
-yay -S github-desktop-bin --noconfirm
-
-# Instalando aplicativos Flatpak
+# Funcao para instalar aplicativos Flatpak
 instalar_flatpaks() {
     # Lista de aplicativos Flatpak a serem instalados
     aplicativos=("com.protonvpn.www" "org.gimp.GIMP" "com.visualstudio.code" "com.github.tchx84.Flatseal" "com.usebottles.bottles" "net.pcsx2.PCSX2" "com.snes9x.Snes9x" "org.inkscape.Inkscape" "nl.hjdskes.gcolor3" "org.kde.kdenlive")
@@ -94,10 +121,40 @@ instalar_flatpaks() {
         flatpak install flathub "$app" --yes
     done
 }
-# Executa a instalação dos aplicativos Flatpak
-instalar_flatpaks
-echo "Instalação dos aplicativos Flatpak concluída!"
 
-# Fim
-echo "Pós Instalação Completa! REINICIE O SISTEMA."
-echo "Post Installation Complete! PLEASE RESTART THE SYSTEM."
+# Inicio do processo
+echo "Starting the installation process..."
+
+# Atualiza o Sistema antes de tudo
+atualizar_sistema() {
+    echo "Updating system..."
+    sudo pacman -Syu --noconfirm
+}
+
+# Chama as funcoes
+verificar_e_instalar_eos_rankmirrors
+echo "Ranking mirrors with eos-rankmirrors..."
+eos-rankmirrors
+
+echo "Updating the list of fastest mirrors with Reflector..."
+sudo reflector --verbose --latest 25 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+verificar_e_instalar_yay
+echo "Updating the system with YAY and sync mirrors..."
+yay -Syyu --noconfirm
+
+# Instalando pacotes e drivers
+instalar_drivers_amd
+instalar_codecs
+instalar_pacotes_essenciais
+instalar_softwares
+instalar_softwares_adicionais
+instalar_flatpak_e_adicionar_flathub
+
+# Instalando aplicativos Flatpak
+instalar_flatpaks
+echo "Flatpak applications installation completed!"
+
+# Fim do processo
+echo "Pós-instalação concluída! REINICIE O SISTEMA PARA QUE TODAS AS ALTERAÇÕES TENHAM EFEITO."
+echo "Post-installation complete! PLEASE RESTART YOUT SYSTEM FOR ALL CHANGES TO TAKE EFFECT."

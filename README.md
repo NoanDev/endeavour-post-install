@@ -1,5 +1,5 @@
 <p align="center">
-<img width="700px" src="https://github.com/NoanDev/endeavour-post-install/blob/main/img/endos-img" align="center" alt="white" /><br><br>
+<img width="700px" src="https://github.com/NoanDev/endeavour-post-install/blob/main/img/endos-img.jpg" align="center" alt="white" /><br><br>
  
 <!-- (site para ícones: https://shields.io/ ) -->
  
@@ -8,10 +8,9 @@
 
 </p>
 
-
 # AVISO
 
-Ao usar este roteiro você assume que entende os riscos e assume total responsabilidade por suas ações. Todos os arquivos que fazem parte desse repositório são distribuídos livremente para serem adaptados. Porém, não há nenhuma garantia implícita ou explícita do seu funcionamento.
+Ao usar este roteiro você assume que entende os riscos e assume total responsabilidade por suas ações. Todos os arquivos que fazem parte desse repositório são distribuídos livremente para serem adaptados para seu uso. Porém, não há nenhuma garantia implícita ou explícita do seu funcionamento. O intuito dele é facilitar minha instalação, mas resolvi deixa-lo mais completo caso alguem queira aprender ou usa-lo. Se ele te ajudar deixe uma Estrela.
 
 
 ---
@@ -19,27 +18,27 @@ Ao usar este roteiro você assume que entende os riscos e assume total responsab
 
 # Objetivos
 
-Esse roteiro funciona como um guia passo a passo para apoiar a pós-instalação/configuração de uma máquina de trabalho baseada no **ArchLinux** para atividades leves de Gameplays, Edição de Vídeo/Fotos, e Programação.
+Esse roteiro funciona como um guia passo a passo para apoiar a pós-instalação e configuração de uma máquina de trabalho baseada no **ArchLinux** para atividades leves de Gameplays, Edição de Vídeo/Fotos, e Programação.
 
-O objetivo deste roteiro **não é ser um script totalmente automatizado**, utilizo ele em meu ambiente, sendo  recomendado e testado apenas no **EndeavourOS**. Caso você queira seguir este roteiro em distros com outras bases, lembre-se de modificar os pacotes e comandos necessários por conta e risco, moldando conforme necessário para seu sistema.
+O objetivo deste roteiro **não é ser um script totalmente automatizado**, utilizo ele em meu ambiente, sendo  recomendado e testado apenas no **EndeavourOS** mas também funciona no **ArchLinux**. Caso você queira seguir este roteiro em distros com outras bases, lembre-se de modificar os pacotes e comandos necessários por conta e risco, moldando conforme necessário para o sistema escolhido.
 
-A seleção de programas escolhidos, é a que utilizo em minha rotina atual, então remova ou adicione programas de acordo com sua necessidade.
-
-
----
-
-
-Neste roteiro considero que estamos partindo de uma instalação PADRÃO do **EndeavourOS** com todas as atualizações recomendadas instaladas. A **instalação mínima** pode apresentar erros na instalação de algum aplicativo, fique atento nas mensagens de erro para instalar os pacotes extras que forem necessários.
-
-Meu setup padrão utiliza uma **GPU AMD RADEON 520** e um processador **Intel®Core™ i7-8565U 1.80GHz**.
+A seleção de programas escolhidos, é a que utilizo em minha rotina atual, então remova ou adicione programas de acordo com sua necessidade. **NO FIM DESSE DOCUMENTO TEM UM SCRIPT PARA AUTOMATIZAR TODO ESSE PROCESSO**.
 
 
 ---
 
 
-# Preparação do EndeavourOS
+Neste roteiro considero que estamos partindo de uma instalação PADRÃO do **EndeavourOS** com todas as atualizações recomendadas instaladas ( **sudo pacman -Syu** ). A **instalação mínima** pode apresentar **ERROS** na instalação de algum aplicativo, fique atento nas mensagens de erro para instalar os pacotes extras que forem necessários.
 
-## Atualizando Mirrors
+Meu setup padrão utiliza uma **GPU AMD RADEON** e um processador **Intel**.
+
+
+---
+
+
+# 1º - Preparação do EndeavourOS
+
+## 1.1 Atualizando Mirrors
 
 Por garantia prefiro ter certeza que os Mirrors estão configurados e são os mais rápidos.
 
@@ -53,7 +52,7 @@ sudo reflector --verbose --latest 25 --protocol https --sort rate --save /etc/pa
 yay -Syyu
 ```
 
-## Editando o arquivo de configurações de Downloads (OPCIONAL):
+## 1.2 Editando o arquivo de configurações de Downloads (OPCIONAL):
 
 Alterar numero de downloads simutâneos:
 ```shellscript
@@ -66,25 +65,27 @@ Descomentar a linha MAKEFLAGS e altere o numero presente em "-j1" para o número
 sudo nano /etc/makepkg.conf
 ```
 
-## Repositórios extras de Codecs
+## 1.3 Repositórios extras de Codecs
 
 São vários repositórios que disponibiliza Codecs para arquivos de Video, Musica e Ferramentas de Multimedia:
 ```shellscript
 sudo pacman -S ffmpeg gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer
 ```
 
-## Instalação drivers de vídeo AMD
+## 1.4 Instalação drivers de vídeo AMD
 
 Os drivers da AMD/ATI estão disponíveis desde a instalação padrão do EndeavourOS, para instá-los geralmente não é preciso fazer manualmente, mas por garantia gosto de fazer.
 ```shellscript
 sudo pacman -S vulkan-radeon libva-mesa-driver vulkan-icd-loader lib32-mesa lib32-vulkan-radeon lib32-vulkan-icd-loader lib32-libva-mesa-driver mesa-demos amd-ucode mesa-utils xorg-xdpyinfo
 ```
 
+
 ---
 
-# Preparação do ambiente para Produtividade
 
-## Instalação dos Programas/Aplicativos (OPCIONAL)
+# 2º - Preparação do ambiente para Produtividade
+
+## 2.1 Instalação dos Programas/Aplicativos
 
 **Lembrete: Instale o suporte a Flatpak**
 ```shellscript
@@ -131,7 +132,9 @@ flatpak install steam
 ```
 Se for necessário, utilizando o FlatSeal libere as permissões do pacote flatpak do Steam para acessar outras Unidades de Disco. Atente-se a permissão de leitura e escrita está habilitada na Patição/Disco em questão.
 
+
 ---
+
 
 **Instala o Emulador de PlayStation 2**
 ```shellscript
@@ -146,7 +149,9 @@ Baixe TODOS os jogos de Ps2 .Torrent ( 2TB Completo ou selecione os Jogos que vo
 https://drive.google.com/file/d/1chVGDlyiP1WZ1xHhqNpHx23RpprDYJu6/view?usp=sharing
 ```
 
+
 ---
+
 
 **Instala o Emulador de Super Nitendo**
 ```shellscript
@@ -156,19 +161,22 @@ Baixe 230 Jogos de SuperNitendo traduzidos para PT-BR ( 243MB ):
 ```shellscript
 https://drive.google.com/file/d/1Sf-qYhBFOiKt94K3AfY7U1meXpNhPKWK/view?usp=sharing
 ```
+
+
 ---
 
-## Instalação de ferramentas gráficas: Gimp, Inskcape, ColorPicker e Kdenlive
+
+## 2.2 Instalação de ferramentas gráficas: Gimp, Inskcape, ColorPicker e Kdenlive
 
 Apps para criação de conteúdo, tratamento de imagens, desenho vetorial e edição de vídeo usando software livre.
 ```shellscript
 flatpak install org.gimp.GIMP org.inkscape.Inkscape nl.hjdskes.gcolor3 org.kde.kdenlive
 ```
 
-## Hora de dar o visual desejado ao EndeavourOS
+## 2.3 Hora de dar o visual desejado ao EndeavourOS
 **Deixo esse tópico aberto pois é pessoal de cada um, eu particularmente uso Tile Windows Manager (i3wm) e na instalação do EndeavourOS já tem a opção de escolhe-la e já vem bem utilizável. Fique a vontade para fazer sua própria personalização a depender da Interface Gráfica de sua escolha.**
 
-## Partições montadas automaticamente ao iniciar o sistema (OPCIONAL)
+## 2.4 Partições montadas automaticamente ao iniciar o sistema (OPCIONAL)
 
 Eu uso o GParted para gerenciar minhas Partições e Discos. Use o App que preferir que você preferir.
 
@@ -199,9 +207,11 @@ Aplique permissões de leitura e escrita na partição/disco com o comando abaix
 sudo chmod 777 /mnt/nomedapartição
 ```
 
+
 ---
 
-## Instalando o XAMPP (OPCIONAL)
+
+## 2.5 Instalando o XAMPP (OPCIONAL)
 
 Baixe o XAMPP:
 ```shellscript
@@ -231,7 +241,7 @@ sudo /opt/lampp/lampp start
 
 ---
 
-# Manutenções de Uso (Fazer a cada 2 ou 4 meses)
+# 3º - Manutenções de Uso (Fazer a cada 2 ou 4 meses)
 
 **Limpa arquivos de configuração antigos:**
 ```shellscript
@@ -248,7 +258,7 @@ paccache -r
 flatpak --user update io.github.shiftey.Desktop
 ```
 
-## Mantendo as Mirrors atualizadas (Cada 1 mês):
+## 3.1 Mantendo as Mirrors atualizadas (Cada 1 semana/mês):
 ```shellscript
 eos-rankmirrors
 ```
@@ -263,7 +273,7 @@ yay -Syyu
 ---
 
 # !!! ATENÇÃO !!!
-**Sempre ao iniciar seu sistema ou até mesmo antes de instalar qualquer aplicativo ou pacote use o script abaixo para evitar causar instabilidades ou até mesmo quebrar o sistema:**
+**Sempre ao iniciar seu sistema ou até mesmo antes de instalar qualquer aplicativo ou pacote use os comandos abaixo para evitar causar instabilidades ou até mesmo quebrar o sistema:**
 **Mantenha seu sistema atualizado**
 ```shellscript
 yay -Syyu
@@ -279,7 +289,7 @@ sudo pacman -Syu nomedopacote
 
 ---
 
-Fiz uma automatização para tudo isso porque sou preguiçoso, caso queira usar fique a vontade!
+Fiz uma automatização para tudo isso (**Sim, Sou Preguiçoso!**), caso queira usar fique a vontade! Leia o Script **post-install.sh** para entender o que será feito, para resumir, o script executa os mesmos comandos desse Tutorial acima.
 ```shellscript
 git clone https://github.com/SirGuinna/endeavouros-post-install
 ```
