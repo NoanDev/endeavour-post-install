@@ -289,7 +289,7 @@ sudo pacman -Syu nomedopacote
 
 ---
 
-Fiz uma automatização para tudo isso (**Sim, Sou Preguiçoso!**), caso queira usar fique a vontade! Leia o Script **post-install.sh** para entender o que será feito, para resumir, o script executa os mesmos comandos desse Tutorial acima.
+Fiz uma automatização para tudo isso (**Sim, Sou Preguiçoso!**), caso queira usar fique a vontade! Leia o Script **post-install.sh** para entender o que será feito, para resumir, o script executa os mesmos comandos desse Tutorial acima. Exceto todos os passos a partir do 2.3 até 3.1
 ```shellscript
 git clone https://github.com/SirGuinna/endeavouros-post-install
 ```
