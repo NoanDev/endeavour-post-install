@@ -108,7 +108,7 @@ flatpak install flathub com.protonvpn.www
 
 **Instala o Github Desktop:**
 ```shellscript
-flatpak install --user https://flathub.org/repo/appstream/io.github.shiftey.Desktop.flatpakref
+yay -S github-desktop
 ```
 
 **Instala o Visual Studio Code:**
