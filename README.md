@@ -300,5 +300,5 @@ cd endeavouros-post-install
 chmod +x post_install.sh
 ```
 ```shellscript
-./post_install.sh
+sudo ./post_install.sh
 ```
