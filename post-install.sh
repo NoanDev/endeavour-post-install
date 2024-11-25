@@ -182,7 +182,7 @@ echo "Updating the system with YAY and sync mirrors..."
 yay -Syyu --noconfirm
 
 # Instalando pacotes e drivers
-instalar_drivers_amd
+instalar_drivers_video
 instalar_codecs
 instalar_pacotes_essenciais
 instalar_softwares
