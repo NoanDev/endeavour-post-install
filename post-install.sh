@@ -76,22 +76,60 @@ instalar_codecs() {
         gst-plugins-base
 }
 
-# Funcao para instalar drivers de video AMD
-instalar_drivers_amd() {
-    echo "Installing AMD video drivers..."
-    sudo pacman -S --noconfirm \
-        vulkan-radeon \
-        libva-mesa-driver \
-        vulkan-icd-loader \
-        lib32-mesa \
-        lib32-vulkan-radeon \
-        lib32-vulkan-icd-loader \
-        lib32-libva-mesa-driver \
-        gst-plugins-base \
-        mesa-demos \
-        amd-ucode \
-        mesa-utils \
-        xorg-xdpyinfo
+# Funcao para instalar drivers de video
+instalar_drivers_video() {
+    echo "Detecting graphics card..."
+    
+    # Verifica a GPU presente no sistema
+    gpu_info=$(lspci | grep -E "VGA|3D")
+    
+    if echo "$gpu_info" | grep -i "NVIDIA" >/dev/null; then
+        echo "NVIDIA GPU detected. Installing NVIDIA drivers..."
+        sudo pacman -S --noconfirm \
+            nvidia \
+            nvidia-utils \
+            nvidia-settings \
+            lib32-nvidia-utils \
+            vulkan-icd-loader \
+            lib32-vulkan-icd-loader \
+            gst-plugins-base \
+            mesa-demos \
+            mesa-utils \
+            xorg-xdpyinfo
+
+    elif echo "$gpu_info" | grep -i "AMD" >/dev/null; then
+        echo "AMD GPU detected. Installing AMD drivers..."
+        sudo pacman -S --noconfirm \
+            vulkan-radeon \
+            libva-mesa-driver \
+            vulkan-icd-loader \
+            lib32-mesa \
+            lib32-vulkan-radeon \
+            lib32-vulkan-icd-loader \
+            lib32-libva-mesa-driver \
+            gst-plugins-base \
+            mesa-demos \
+            amd-ucode \
+            mesa-utils \
+            xorg-xdpyinfo
+
+    elif echo "$gpu_info" | grep -i "Intel" >/dev/null; then
+        echo "Intel GPU detected. Installing Intel drivers..."
+        sudo pacman -S --noconfirm \
+            mesa \
+            vulkan-intel \
+            lib32-mesa \
+            lib32-vulkan-intel \
+            libva-intel-driver \
+            gst-plugins-base \
+            mesa-demos \
+            mesa-utils \
+            xorg-xdpyinfo
+
+    else
+        echo "No supported GPU detected or unable to determine the GPU."
+        echo "Please check your hardware manually."
+    fi
 }
 
 # Funcao para instalar softwares essenciais via pacman
