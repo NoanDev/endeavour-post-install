@@ -18,25 +18,25 @@ Ao usar este roteiro você assume que entende os riscos e assume total responsab
 
 # Objetivos
 
-Esse roteiro funciona como um guia passo a passo para apoiar a pós-instalação e configuração de uma máquina de trabalho baseada no **ArchLinux** para atividades leves de Gameplays, Edição de Vídeo/Fotos, e Programação.
+Esse roteiro funciona como um guia passo a passo para apoiar a pós-instalação e configuração de uma máquina de trabalho baseada no **ArchLinux**. Considero que estamos partindo de uma instalação PADRÃO do **EndeavourOS** com todas as atualizações recomendadas instaladas ( **sudo pacman -Syu** ). A **instalação mínima** pode apresentar **ERROS** na instalação de algum aplicativo, fique atento nas mensagens de erro para instalar os pacotes extras que forem necessários.
 
-O objetivo deste roteiro **não é ser um script totalmente automatizado**, utilizo ele em meu ambiente, sendo  recomendado e testado apenas no **EndeavourOS** mas também funciona no **ArchLinux**. Caso você queira seguir este roteiro em distros com outras bases, lembre-se de modificar os pacotes e comandos necessários por conta e risco, moldando conforme necessário para o sistema escolhido.
+O objetivo deste roteiro **não é ser um script totalmente automatizado**, utilizo ele em meu ambiente, sendo  recomendado e testado apenas no **EndeavourOS** mas também funciona em qualquer Base  **ArchLinux**. Caso você queira seguir este roteiro em distros com outras bases, lembre-se de modificar os pacotes e comandos necessários, moldando conforme necessário para o sistema escolhido.
 
-A seleção de programas escolhidos, é a que utilizo em minha rotina atual, então remova ou adicione programas de acordo com sua necessidade. **NO FIM DESSE DOCUMENTO TEM UM SCRIPT PARA AUTOMATIZAR TODO ESSE PROCESSO**.
-
-
----
-
-
-Neste roteiro considero que estamos partindo de uma instalação PADRÃO do **EndeavourOS** com todas as atualizações recomendadas instaladas ( **sudo pacman -Syu** ). A **instalação mínima** pode apresentar **ERROS** na instalação de algum aplicativo, fique atento nas mensagens de erro para instalar os pacotes extras que forem necessários.
-
-Meu setup padrão utiliza uma **GPU AMD RADEON** e um processador **Intel**.
+**NO FIM DESSE DOCUMENTO TEM UM SCRIPT PARA AUTOMATIZAR TODO ESSE PROCESSO**.
 
 
 ---
 
 
 # 1º - Preparação do EndeavourOS
+
+Atualize o sistema e instale o YAY
+```shellscript
+sudo pacman -Syu
+```
+```shellscript
+sudo pacman -S yay
+```
 
 ## 1.1 Atualizando Mirrors
 
@@ -52,7 +52,41 @@ sudo reflector --verbose --latest 25 --protocol https --sort rate --save /etc/pa
 yay -Syyu
 ```
 
-## 1.2 Editando o arquivo de configurações de Downloads (OPCIONAL):
+## 1.2 Instalação do Flatpak e repositório Flathub
+```shellscript
+sudo pacman -S flatpak
+```
+```shellscript
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+```
+
+## 1.3 Instalação drivers de vídeo
+
+Os drivers da AMD, INTEL e NVIDIA estão disponíveis desde a instalação padrão do EndeavourOS, para instá-los geralmente não é preciso fazer manualmente, mas por garantia gosto de fazer. **OBS: No script essa etapa é automatica, irá ver qual sua GPU e instalar os drivers!**
+
+---
+Para AMD:
+```shellscript
+sudo pacman -S vulkan-radeon libva-mesa-driver vulkan-icd-loader lib32-mesa lib32-vulkan-radeon lib32-vulkan-icd-loader lib32-libva-mesa-driver mesa-demos amd-ucode mesa-utils xorg-xdpyinfo
+```
+
+Para NVIDIA:
+```shellscript
+sudo pacman -S nvidia nvidia-utils nvidia-settings lib32-nvidia-utils vulkan-icd-loader lib32-vulkan-icd-loader gst-plugins-base mesa-demos mesa-utils xorg-xdpyinfo
+```
+
+Para INTEL:
+```shellscript
+sudo pacman -S vulkan-radeon libva-mesa-driver vulkan-icd-loader lib32-mesa lib32-vulkan-radeon lib32-vulkan-icd-loader lib32-libva-mesa-driver gst-plugins-base mesa-demos amd-ucode mesa-utils xorg-xdpyinfo
+```
+
+
+---
+
+
+# 2º - Preparando ambiente (OPCIONAIS)
+
+## 2.1 Editando o arquivo de configurações de Downloads (OPCIONAL):
 
 Alterar numero de downloads simutâneos:
 ```shellscript
@@ -65,118 +99,10 @@ Descomentar a linha MAKEFLAGS e altere o numero presente em "-j1" para o número
 sudo nano /etc/makepkg.conf
 ```
 
-## 1.3 Repositórios extras de Codecs
-
-São vários repositórios que disponibiliza Codecs para arquivos de Video, Musica e Ferramentas de Multimedia:
-```shellscript
-sudo pacman -S ffmpeg gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer
-```
-
-## 1.4 Instalação drivers de vídeo AMD
-
-Os drivers da AMD/ATI estão disponíveis desde a instalação padrão do EndeavourOS, para instá-los geralmente não é preciso fazer manualmente, mas por garantia gosto de fazer.
-```shellscript
-sudo pacman -S vulkan-radeon libva-mesa-driver vulkan-icd-loader lib32-mesa lib32-vulkan-radeon lib32-vulkan-icd-loader lib32-libva-mesa-driver mesa-demos amd-ucode mesa-utils xorg-xdpyinfo
-```
-
-
 ---
 
 
-# 2º - Preparação do ambiente para Produtividade
-
-## 2.1 Instalação dos Programas/Aplicativos
-
-**Lembrete: Instale o suporte a Flatpak**
-```shellscript
-sudo pacman -S flatpak
-```
-```shellscript
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-```
-
-O script abaixo instala Telegram Desktop, Chromium, Nano, Fastfetch, Discord, TimeShift, GParted, OBS Studio, HTop.
-
-```shellscript
-sudo pacman -S telegram-desktop chromium nano fastfetch discord timeshift gparted obs-studio htop
-```
-
-**Instala o ProtonVPN:**
-```shellscript
-flatpak install flathub com.protonvpn.www
-```
-
-**Instala o Github Desktop:**
-```shellscript
-yay -S github-desktop
-```
-
-**Instala o Visual Studio Code:**
-```shellscript
-flatpak install flathub com.visualstudio.code
-```
-
-**Instala o Bottles:**
-```shellscript
-flatpak install bottles
-```
-
-**Instala o FlatSeal:**
-```shellscript
-flatpak install flathub com.github.tchx84.Flatseal
-```
-
-**Instala a Steam**
-```shellscript
-flatpak install steam
-```
-Se for necessário, utilizando o FlatSeal libere as permissões do pacote flatpak do Steam para acessar outras Unidades de Disco. Atente-se a permissão de leitura e escrita está habilitada na Patição/Disco em questão.
-
-
----
-
-
-**Instala o Emulador de PlayStation 2**
-```shellscript
-flatpak install pcsx2
-```
-Baixe a BIOS do PS2 (Japones, Europa e EUA):
-```shellscript
-https://drive.google.com/file/d/17b6sCwUxrnO0WVxqTGnWHCSGKeiG_5Lz/view?usp=sharing
-```
-Baixe TODOS os jogos de Ps2 .Torrent ( 2TB Completo ou selecione os Jogos que você quiser):
-```shellscript
-https://drive.google.com/file/d/1chVGDlyiP1WZ1xHhqNpHx23RpprDYJu6/view?usp=sharing
-```
-
-
----
-
-
-**Instala o Emulador de Super Nitendo**
-```shellscript
-flatpak install snes9x
-```
-Baixe 230 Jogos de SuperNitendo traduzidos para PT-BR ( 243MB ):
-```shellscript
-https://drive.google.com/file/d/1Sf-qYhBFOiKt94K3AfY7U1meXpNhPKWK/view?usp=sharing
-```
-
-
----
-
-
-## 2.2 Instalação de ferramentas gráficas: Gimp, Inskcape, ColorPicker e Kdenlive
-
-Apps para criação de conteúdo, tratamento de imagens, desenho vetorial e edição de vídeo usando software livre.
-```shellscript
-flatpak install org.gimp.GIMP org.inkscape.Inkscape nl.hjdskes.gcolor3 org.kde.kdenlive
-```
-
-## 2.3 Hora de dar o visual desejado ao EndeavourOS
-**Deixo esse tópico aberto pois é pessoal de cada um, eu particularmente uso Tile Windows Manager (i3wm) e na instalação do EndeavourOS já tem a opção de escolhe-la e já vem bem utilizável. Fique a vontade para fazer sua própria personalização a depender da Interface Gráfica de sua escolha.**
-
-## 2.4 Partições montadas automaticamente ao iniciar o sistema (OPCIONAL)
+## 2.2 Partições montadas automaticamente ao iniciar o sistema (OPCIONAL)
 
 Eu uso o GParted para gerenciar minhas Partições e Discos. Use o App que preferir que você preferir.
 
@@ -207,38 +133,6 @@ Aplique permissões de leitura e escrita na partição/disco com o comando abaix
 sudo chmod 777 /mnt/nomedapartição
 ```
 
-
----
-
-
-## 2.5 Instalando o XAMPP (OPCIONAL)
-
-Baixe o XAMPP:
-```shellscript
-https://www.apachefriends.org/download.html
-```
-Instale o pacote "libxcrypt-compat" para funcionar corretamente:
-```shellscript
-yay -S libxcrypt-compat
-```
-Execute os seguintes comandos para instalar:
-```shellscript
-cd Downloads
-```
-```shellscript
-sudo chmod +x nomedoarquivobaixado
-```
-```shellscript
-sudo ./nomedoarquivogerado
-```
-DICA: No nome do arquivo basta por "xamp" e apertar TAB que o nome vai ser completado.
-
-- Ao instalar você terá a Interface Gráfica mas ao fechar não terá mais. Sempre que precisar execute via terminal com o comando abaixo:
-```shellscript
-sudo /opt/lampp/lampp start
-```
-- Parar o XAMPP é o mesmo comando, porém no lugar de "start" coloque "stop".
-
 ---
 
 # 3º - Manutenções de Uso (Fazer a cada 2 ou 4 meses)
@@ -253,12 +147,8 @@ https://wiki.archlinux.org/title/System_maintenance#Old_configuration_files
 paccache -r
 ```
 
-**Caso seja necessário atualizar o GitHub Desktop:**
-```shellscript
-flatpak --user update io.github.shiftey.Desktop
-```
-
 ## 3.1 Mantendo as Mirrors atualizadas (Cada 1 semana/mês):
+Caso esteja no EndeavourOS use o comando abaixo, senão ignore e use apenas os dois ultimos.
 ```shellscript
 eos-rankmirrors
 ```
@@ -287,9 +177,25 @@ flatpak update
 sudo pacman -Syu nomedopacote
 ```
 
+## BONUS
+Baixe 230 Jogos de SuperNitendo traduzidos para PT-BR ( 243MB ):
+```shellscript
+https://drive.google.com/file/d/1Sf-qYhBFOiKt94K3AfY7U1meXpNhPKWK/view?usp=sharing
+```
+Baixe a BIOS do PS2 (Japones, Europa e EUA):
+```shellscript
+https://drive.google.com/file/d/17b6sCwUxrnO0WVxqTGnWHCSGKeiG_5Lz/view?usp=sharing
+```
+Baixe TODOS os jogos de Ps2 .Torrent ( 2TB Completo ou selecione os Jogos que você quiser):
+```shellscript
+https://drive.google.com/file/d/1chVGDlyiP1WZ1xHhqNpHx23RpprDYJu6/view?usp=sharing
+```
+
+
 ---
 
-Fiz uma automatização para tudo isso (**Sim, Sou Preguiçoso!**), caso queira usar fique a vontade! Leia o Script **.sh** para entender o que será feito, para resumir, o script executa os mesmos comandos desse Tutorial acima. Exceto todos os passos a partir do 2.3 até 3.1
+
+Fiz uma automatização para tudo isso, caso queira usar fique a vontade! Leia o Script **clean-post-install.sh** para entender o que será feito, para resumir, o script executa os mesmos comandos desse Tutorial acima, com exceção do passos **2** e **3** o arquivo **my-setup.sh** é o script que uso para gerenciar a pós instalação do meu sistema, fique a vontade para analisa-lo.
 ```shellscript
 git clone https://github.com/SirGuinna/endeavouros-post-install
 ```
