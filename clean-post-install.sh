@@ -58,31 +58,6 @@ instalar_flatpak_e_adicionar_flathub() {
     fi
 }
 
-# Funcao para instalar pacotes essenciais
-instalar_pacotes_essenciais() {
-    echo "Installing essential packages..."
-    sudo pacman -S --noconfirm \
-        git \
-        nano \
-        wget \
-        curl \
-        htop \
-        fastfetch
-}
-
-# Funcao para instalar codecs de multimidia
-instalar_codecs() {
-    echo "Installing multimedia codecs..."
-    sudo pacman -S --noconfirm \
-        gstreamer \
-        ffmpeg \
-        gst-libav \
-        gst-plugins-ugly \
-        gst-plugins-good \
-        gst-plugins-bad \
-        gst-plugins-base
-}
-
 # Funcao para instalar drivers de video
 instalar_drivers_video() {
     echo "Detecting graphics card..."
@@ -140,34 +115,6 @@ instalar_drivers_video() {
     fi
 }
 
-# Funcao para instalar softwares essenciais via pacman
-instalar_softwares() {
-    echo "Installing essential applications..."
-    sudo pacman -S --noconfirm \
-        chromium \
-        obs-studio \
-        timeshift \
-        gparted \
-        discord
-}
-
-# Funcao para instalar Github Desktop via yay
-instalar_softwares_adicionais() {
-    echo "Installing GitHub Desktop with YAY..."
-    yay -S github-desktop-bin --noconfirm
-}
-
-# Funcao para instalar aplicativos Flatpak
-instalar_flatpaks() {
-    # Lista de aplicativos Flatpak a serem instalados
-    aplicativos=("com.protonvpn.www" "org.gimp.GIMP" "com.visualstudio.code" "com.github.tchx84.Flatseal" "com.usebottles.bottles" "net.pcsx2.PCSX2" "com.snes9x.Snes9x" "org.inkscape.Inkscape" "nl.hjdskes.gcolor3" "org.kde.kdenlive")
-    # Itera sobre a lista e instala cada aplicativo
-    for app in "${aplicativos[@]}"; do
-        echo "Installing $app with Flatpak..."
-        flatpak install flathub "$app" --yes
-    done
-}
-
 # Inicio do processo
 echo "Starting the installation process..."
 
@@ -187,21 +134,12 @@ echo "Updating the list of fastest mirrors with Reflector..."
 sudo reflector --verbose --latest 25 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 echo "List updated successfully!"
 
+# Instalando Drivers, YAY e suporte a Flatpak
 verificar_e_instalar_yay
 echo "Updating the system with YAY and sync mirrors..."
 yay -Syyu --noconfirm
-
-# Instalando pacotes e drivers
 instalar_drivers_video
-instalar_codecs
-instalar_pacotes_essenciais
-instalar_softwares
-instalar_softwares_adicionais
 instalar_flatpak_e_adicionar_flathub
-
-# Instalando aplicativos Flatpak
-instalar_flatpaks
-echo "Flatpak applications installation completed!"
 
 # Fim do processo
 echo "Pós-instalação concluída! REINICIE O SISTEMA PARA QUE TODAS AS ALTERAÇÕES TENHAM EFEITO."
